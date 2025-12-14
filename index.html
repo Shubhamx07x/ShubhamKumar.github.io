@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shubham Kumar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            background: #000;
+            color: #f5f5f7;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 20px;
+            background: radial-gradient(ellipse at center, #1d1d1f 0%, #000 70%);
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3), transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(74, 144, 226, 0.3), transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, #a0a0a0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 400;
+            color: #a1a1a6;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .contact-links a {
+            color: #2997ff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 12px 24px;
+            border-radius: 980px;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-links a:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        .section {
+            padding: 120px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, #8e8e93 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: #86868b;
+            font-weight: 400;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 50px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(255,255,255,0.15);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #f5f5f7;
+            letter-spacing: -0.01em;
+        }
+
+        .card-date {
+            color: #86868b;
+            font-size: 1rem;
+            white-space: nowrap;
+        }
+
+        .card-subtitle {
+            font-size: 1.2rem;
+            color: #a1a1a6;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .card-description {
+            color: #a1a1a6;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .card-description li {
+            margin-bottom: 15px;
+            padding-left: 10px;
+            list-style: none;
+            position: relative;
+        }
+
+        .card-description li::before {
+            content: '→';
+            position: absolute;
+            left: -20px;
+            color: #2997ff;
+        }
+
+        .modules {
+            color: #86868b;
+            font-size: 1rem;
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            border-left: 3px solid #2997ff;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .skill-card {
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.4s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(41, 151, 255, 0.3);
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #f5f5f7;
+            font-weight: 600;
+        }
+
+        .skill-card p {
+            color: #a1a1a6;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .interests-list {
+            list-style: none;
+            margin-top: 40px;
+        }
+
+        .interests-list li {
+            background: rgba(255,255,255,0.03);
+            padding: 30px;
+            margin-bottom: 20px;
+            border-radius: 16px;
+            color: #a1a1a6;
+            line-height: 1.7;
+            font-size: 1.05rem;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .interests-list li:hover {
+            background: rgba(255,255,255,0.05);
+            transform: translateX(10px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #86868b;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 80px 20px;
+            }
+
+            .card {
+                padding: 30px;
+            }
+
+            .card-header {
+                flex-direction: column;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Selection color */
+        ::selection {
+            background: #2997ff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Shubham Kumar</h1>
+            <p class="hero-subtitle">Financial Engineer • Risk Management Specialist • Data Analyst</p>
+            <div class="contact-links">
+                <a href="tel:+447466409474">+44 7466409474</a>
+                <a href="mailto:shubham.kumar25@imperial.ac.uk">Email</a>
+                <a href="https://linkedin.com/in/shubham-kumar-4b3512180/" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">↓</div>
+    </div>
+
+    <!-- Education Section -->
+    <div class="section">
+        <div class="section-header">
+            <h2 class="section-title">Education</h2>
+            <p class="section-subtitle">Building expertise in financial engineering and risk management</p>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <div class="card-title">Imperial Business School</div>
+                    <div class="card-subtitle">MSc in Risk Management & Financial Engineering</div>
+                </div>
+                <div class="card-date">Aug 2025 – Aug 2026</div>
+            </div>
+            <div class="modules">
+                <strong>Relevant modules:</strong> Financial Statistics • Investments and Portfolio Management • Stochastic Calculus and Risk Management • Valuation • Computational Finance with C++ • Advanced Options Theory and Applied Trading Strategies
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <div class="card-title">Savitribai Phule Pune University</div>
+                    <div class="card-subtitle">BTech Electronics and Telecommunication • CGPA 9.22</div>
+                </div>
+                <div class="card-date">Aug 2018 – Jun 2022</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Experience Section -->
+    <div class="section">
+        <div class="section-header">
+            <h2 class="section-title">Experience</h2>
+            <p class="section-subtitle">Driving innovation in financial operations and risk management</p>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <div class="card-title">UBS</div>
+                    <div class="card-subtitle">Financial Analyst (Authorized Officer)</div>
+                </div>
+                <div class="card-date">Aug 2022 – Aug 2025</div>
+            </div>
+            <ul class="card-description">
+                <li>Managed daily and monthly Basel III liquidity reporting for complex debt products, including ELNs, FX and Commodity-linked securities, ensuring regulatory compliance and accurate risk assessment</li>
+                <li>Delivered liquidity and balance sheet insights to key stakeholders including UBS Group Treasury and Financial Resource Management</li>
+                <li>Automated reporting with Alteryx and Python, built Power BI dashboards saving 75% of reporting time and 120+ hours annually</li>
+                <li>Streamlined End-User Computing in line with FINMA requirements, generating $15mn in economic profit—achievement that led to promotion to Authorized Officer in 2024</li>
+                <li>Developed Gen AI-based data extraction solutions from term sheets to eliminate manual review of early redemption features</li>
+                <li>Designed Python-based commentary tool using pandas to automate Month-on-Month balance sheet movement analysis</li>
+                <li>Successfully transitioned all liquidity reporting for debt products from Poland team to India post Credit Suisse integration, achieving substantial cost savings</li>
+                <li>Executed debt portfolio migration testing from CS to UBS, safeguarding reporting accuracy and evaluating regulatory impacts</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <div class="card-title">UBS</div>
+                    <div class="card-subtitle">Intern</div>
+                </div>
+                <div class="card-date">Jan 2022 – Aug 2022</div>
+            </div>
+            <ul class="card-description">
+                <li>Owned end-to-end production of 3 regulatory reports for UBS issued debt products over 4 months, securing full-time employment offer</li>
+                <li>Analysed $50bn+ debt portfolio across global profit centres to assess impact on LCR, NSFR, and other liquidity reports</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Achievements Section -->
+    <div class="section">
+        <div class="section-header">
+            <h2 class="section-title">Achievements</h2>
+            <p class="section-subtitle">Leadership and impact beyond the role</p>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <div class="card-title">Student Staff Committee Career Lead</div>
+                    <div class="card-subtitle">Imperial College London</div>
+                </div>
+                <div class="card-date">Sep 2025 – Aug 2026</div>
+            </div>
+            <div class="card-description">
+                Representing the career interests of 150+ students by actively bridging communication and driving alignment between the cohort and the Careers Team
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <div class="card-title">UBS L&F India Integration Project</div>
+                    <div class="card-subtitle">Core Team Member</div>
+                </div>
+                <div class="card-date">Jun 2024 – Jun 2025</div>
+            </div>
+            <div class="card-description">
+                Led stakeholder engagement and integration of 70 employees across People, Systems, and Processes post Credit Suisse acquisition, achieving seamless transition within 6 months
+            </div>
+        </div>
+    </div>
+
+    <!-- Skills Section -->
+    <div class="section">
+        <div class="section-header">
+            <h2 class="section-title">Skills</h2>
+            <p class="section-subtitle">Technical expertise and capabilities</p>
+        </div>
+
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Technical Skills</h3>
+                <p>MS Excel (advanced) • Python (advanced) • SQL (advanced) • R (intermediate) • Pandas • Alteryx • Power BI • SAP BO • Monte Carlo Simulation • Data Visualization • Bloomberg Terminal • MATLAB • Financial Analysis</p>
+            </div>
+            <div class="skill-card">
+                <h3>Languages</h3>
+                <p>English (fluent) • Hindi (native)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interests Section -->
+    <div class="section">
+        <div class="section-header">
+            <h2 class="section-title">Beyond Work</h2>
+            <p class="section-subtitle">Passions and pursuits</p>
+        </div>
+
+        <ul class="interests-list">
+            <li>🏔️ Completed several major treks including Solang Valley Trek (2014), Harishchandragarh Trek (2021), and Kheerganga Trek (2023), building resilience, planning skills, and endurance</li>
+            <li>⚽ Represented school at U-14 National Football level and enjoy playing chess in my free time</li>
+        </ul>
+    </div>
+</body>
+</html>
